@@ -1,2 +1,3 @@
 beautifulsoup4
 behave
+django>=2.2
