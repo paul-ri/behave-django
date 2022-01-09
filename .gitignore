@@ -26,12 +26,6 @@ var/
 # We only want Pipfile for easy development
 Pipfile.lock
 
-# PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
-*.manifest
-*.spec
-
 # Installer logs
 pip-log.txt
 pip-delete-this-directory.txt
@@ -46,6 +40,7 @@ coverage.xml
 nosetests.xml
 .pytest_cache/
 .tox/
+tests/reports/
 
 # Translations
 *.mo
@@ -57,9 +52,6 @@ nosetests.xml
 
 # Sphinx documentation
 docs/_build/
-
-# PyBuilder
-target/
 
 # added by GitSavvy
 /.python-version
