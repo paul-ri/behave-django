@@ -1,6 +1,8 @@
 import os
 from imp import reload
 
+import pytest
+
 from .util import DjangoSetupMixin, run_silently, show_run_error
 
 
@@ -15,6 +17,7 @@ class TestCommandLine(DjangoSetupMixin):
                 os.linesep) in output
         assert (os.linesep + '  -k, --keepdb') in output
         assert (os.linesep + '  -S, --simple') in output
+        assert (os.linesep + '  --runner-class') in output
         assert (os.linesep + '  --noinput, --no-input') in output
         assert (os.linesep + '  --failfast') in output
         assert (os.linesep + '  -r, --reverse') in output
@@ -22,14 +25,20 @@ class TestCommandLine(DjangoSetupMixin):
     def test_should_accept_behave_arguments(self):
         from behave_django.management.commands.behave import Command
         command = Command()
-        args = command.get_behave_args(
-            argv=['manage.py', 'behave',
-                  '--format', 'progress',
-                  '--settings', 'test_project.settings',
-                  '-i', 'some-pattern',
-                  'features/running-tests.feature'])
+        argv = [
+            'manage.py', 'behave',
+            '--format', 'progress',
+            '--behave-runner-class', 'behave.runner.Runner',
+            '--runner-class', 'behave_django.runner.BehaviorDrivenTestRunner',
+            '--settings', 'test_project.settings',
+            '-i', 'some-pattern',
+            'features/running-tests.feature'
+        ]
+        args = command.get_behave_args(argv=argv)
 
         assert '--format' in args
+        assert '--runner-class' in args
+        assert args[args.index('--runner-class') + 1] == 'behave.runner.Runner'
         assert 'progress' in args
         assert '-i' in args
         assert 'some-pattern' in args
@@ -107,3 +116,65 @@ class TestCommandLine(DjangoSetupMixin):
             '--simple flag has no effect together with '
             '--use-existing-database' +
             os.linesep) in output
+
+    @pytest.mark.parametrize('arguments, expect_error', [
+        (
+            '--runner-class behave_django.runner.BehaviorDrivenTestRunner',
+            False
+        ),
+        (
+            (
+                '--runner-class behave_django.runner.SimpleTestRunner '
+                '--simple'
+            ),
+            True
+        ),
+        (
+            (
+                '--runner-class behave_django.runner.BehaviorDrivenTestRunner '
+                '--simple'
+            ),
+            False
+        ),
+        (
+            (
+                '--behave-runner-class behave.runner.Runner '
+                '--runner-class behave_django.runner.SimpleTestRunner '
+                '--simple'
+            ),
+            True
+        ),
+        (
+            (
+                '--runner-class behave_django.runner.SimpleTestRunner '
+                '--use-existing-database'
+            ),
+            True
+        ),
+        ('--behave-runner-class behave.runner.Runner --simple', False),
+        (
+            (
+                '--behave-runner-class behave.runner.Runner '
+                '--runner-class behave_django.runner.BehaviorDrivenTestRunner'
+            ),
+            False
+        ),
+    ])
+    def test_runner_class_and_others_flags_raise_a_warning(self, arguments,
+                                                           expect_error):
+        exit_status, output = run_silently(
+            'python tests/manage.py behave'
+            '    %s --tags=@skip-all' % arguments
+        )
+        assert exit_status == 0, \
+            show_run_error(exit_status, output)
+
+        warning_message = (
+            os.linesep +
+            '--use-existing-database or --simple has no effect'
+            ' together with --runner-class' +
+            os.linesep)
+        if expect_error:
+            assert warning_message in output
+        else:
+            assert warning_message not in output

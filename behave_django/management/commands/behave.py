@@ -4,6 +4,7 @@ import sys
 
 from behave.__main__ import main as behave_main
 from behave.configuration import options as behave_options
+from behave.configuration import valid_python_module
 from django.core.management.base import BaseCommand
 
 from behave_django.environment import monkey_patch_behave
@@ -54,6 +55,14 @@ def add_command_arguments(parser):
         help="Use simple test runner that supports Django's"
         " testing client only (no web browser automation)"
     )
+    parser.add_argument(
+        '--runner-class',
+        action='store',
+        type=valid_python_module,
+        default='behave_django.runner.BehaviorDrivenTestRunner',
+        help=('Full Python dotted path to a package, module, Django '
+              'TestRunner.  Defaults to "%(default)s)".')
+    )
 
 
 def add_behave_arguments(parser):  # noqa
@@ -70,6 +79,7 @@ def add_behave_arguments(parser):  # noqa
         '-v',
         '-S',
         '--simple',
+        '--runner-class',
     ]
 
     parser.add_argument(
@@ -120,11 +130,21 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
 
+        django_runner_class = options['runner_class']
+        is_default_runner = django_runner_class is BehaviorDrivenTestRunner
+
         # Check the flags
         if options['use_existing_database'] and options['simple']:
             self.stderr.write(self.style.WARNING(
                 '--simple flag has no effect'
                 ' together with --use-existing-database'
+            ))
+
+        active_flags = options['use_existing_database'] or options['simple']
+        if not is_default_runner and active_flags:
+            self.stderr.write(self.style.WARNING(
+                '--use-existing-database or --simple has no effect'
+                ' together with --runner-class'
             ))
 
         # Configure django environment
@@ -136,13 +156,13 @@ class Command(BaseCommand):
                        k, v in
                        options.items() if k in passthru_args and v is not None}
 
-        if options['dry_run'] or options['use_existing_database']:
-            django_test_runner = ExistingDatabaseTestRunner(**runner_args)
-        elif options['simple']:
-            django_test_runner = SimpleTestRunner(**runner_args)
-        else:
-            django_test_runner = BehaviorDrivenTestRunner(**runner_args)
+        if is_default_runner:
+            if options['dry_run'] or options['use_existing_database']:
+                django_runner_class = ExistingDatabaseTestRunner
+            elif options['simple']:
+                django_runner_class = SimpleTestRunner
 
+        django_test_runner = django_runner_class(**runner_args)
         django_test_runner.setup_test_environment()
 
         old_config = django_test_runner.setup_databases()

@@ -13,14 +13,6 @@ management command.
 
 Additional command line options provided by *behave-django*:
 
-``--use-existing-database``
-***************************
-
-Don't create a test database, and use the database of your default runserver
-instead. USE AT YOUR OWN RISK! Only use this option for testing against a
-*copy* of your production database or other valuable data. Your tests may
-destroy your data irrecoverably.
-
 ``--keepdb``
 ************
 
@@ -30,6 +22,15 @@ recreating it each time you run the test. This flag enables
 ``manage.py behave --keepdb`` to take advantage of that feature.
 |keepdb docs|_.
 
+``--runner-class``
+******************
+
+Full Python dotted path to a package, module, Django TestRunner. 
+
+Not to be confused with `--behave-runner-class` that handles the internal
+`TestRunner` inside `behave`. You can read more about it in the
+`behave docs <https://behave.readthedocs.io/en/latest/behave.html#cmdoption-runner-class>`__.
+
 ``--simple``
 ************
 
@@ -37,6 +38,14 @@ Use Django's simple ``TestCase`` which rolls back the database transaction
 after each scenario instead of flushing the entire database. Tests run much
 quicker, however HTTP server is not started and therefore web browser
 automation is not available.
+
+``--use-existing-database``
+***************************
+
+Don't create a test database, and use the database of your default runserver
+instead. USE AT YOUR OWN RISK! Only use this option for testing against a
+*copy* of your production database or other valuable data. Your tests may
+destroy your data irrecoverably.
 
 Behave configuration file
 -------------------------
