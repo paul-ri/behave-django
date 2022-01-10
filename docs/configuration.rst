@@ -18,7 +18,7 @@ Additional command line options provided by *behave-django*:
 
 Starting with Django 1.8, the ``--keepdb`` flag was added to ``manage.py test``
 to facilitate faster testing by using the existing database instead of
-recreating it each time you run the test. This flag enables
+recreating it each time you run the test.  This flag enables
 ``manage.py behave --keepdb`` to take advantage of that feature.
 |keepdb docs|_.
 
@@ -50,8 +50,8 @@ automation is not available.
 ***************************
 
 Don't create a test database, and use the database of your default runserver
-instead. USE AT YOUR OWN RISK! Only use this option for testing against a
-*copy* of your production database or other valuable data. Your tests may
+instead.  USE AT YOUR OWN RISK! Only use this option for testing against a
+*copy* of your production database or other valuable data.  Your tests may
 destroy your data irrecoverably.
 
 Behave configuration file
@@ -79,8 +79,8 @@ In your ``.behaverc`` file, you can put
 .. _Django test runner: https://docs.djangoproject.com/en/stable/ref/settings/#test-runner
 .. _Django's default test runner: https://github.com/django/django/blob/stable/4.0.x/django/test/runner.py#L555-L582
 .. |BehaviorDrivenTestRunner| replace:: ``behave_django.runner.BehaviorDrivenTestRunner``
-.. _BehaviorDrivenTestRunner: https://github.com/behave/behave-django/blob/main/behave_django/runner.py#L11-L15
-.. _test runner inside behave: https://github.com/behave/behave/blob/master/behave/runner.py#L728-L736
+.. _BehaviorDrivenTestRunner: https://github.com/behave/behave-django/blob/1.4.0/behave_django/runner.py#L9-L13
+.. _test runner inside behave: https://github.com/behave/behave/blob/v1.2.7.dev2/behave/runner.py#L728-L736
 .. |behave docs (runner class)| replace:: behave docs
 .. _behave docs (runner class): https://behave.readthedocs.io/en/latest/behave.html#cmdoption-runner-class
 .. |behave docs (config files)| replace:: behave docs
