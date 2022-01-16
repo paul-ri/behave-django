@@ -33,5 +33,3 @@ Or maybe you want to modify the ``test`` instance:
 
 
 .. _factories: https://factoryboy.readthedocs.io/en/latest/
-.. |keepdb docs| replace:: More information about ``--keepdb``
-.. _keepdb docs: https://docs.djangoproject.com/en/stable/topics/testing/overview/#the-test-database
