@@ -57,7 +57,8 @@ destroy your data irrecoverably.
 Behave configuration file
 -------------------------
 
-You can use *behave*'s configuration file.  Just create a ``behave.ini``,
+You can use *behave*'s configuration file.  Just add a ``[tool.behave]``
+section to your ``pyproject.toml`` file or create a ``behave.ini``,
 ``.behaverc``, ``setup.cfg`` or ``tox.ini`` file in your project's root
 directory and behave will pick it up.  You can read more about it in the
 |behave docs (config files)|_.
