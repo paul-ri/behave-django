@@ -1,11 +1,5 @@
 """
 Django settings for test_project project.
-
-For more information on this file, see
-https://docs.djangoproject.com/en/stable/topics/settings/
-
-For the full list of settings and their values, see
-https://docs.djangoproject.com/en/stable/ref/settings/
 """
 
 from pathlib import Path

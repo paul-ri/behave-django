@@ -177,7 +177,7 @@ class TestCommandLine(DjangoSetupMixin):
     )
     def test_runner_and_others_flags_raise_a_warning(self, arguments, expect_error):
         exit_status, output = run_silently(
-            'python tests/manage.py behave    %s --tags=@skip-all' % arguments
+            f'python tests/manage.py behave {arguments} --tags=@skip-all'
         )
         assert exit_status == 0, show_run_error(exit_status, output)
 

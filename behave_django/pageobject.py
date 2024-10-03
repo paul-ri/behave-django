@@ -3,6 +3,7 @@ A headless Page Object pattern implementation.
 
 Background reading: https://www.martinfowler.com/bliki/PageObject.html
 """
+
 import django.shortcuts
 from bs4 import BeautifulSoup
 
