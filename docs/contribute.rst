@@ -7,7 +7,7 @@ do just that.
 Preparation
 -----------
 
-Fork, then clone the repo:
+Fork the *behave-django* repository, then clone it:
 
 .. code:: console
 
@@ -30,9 +30,9 @@ section in ``tox.ini`` for details.
 
 .. code:: console
 
-    $ tox -lv               # show all Tox targets
-    $ tox -e py37-django22  # run just a single target
-    $ tox                   # run all linting and tests
+    $ tox list               # show all Tox environments
+    $ tox -e py312-django51  # run just a single environment
+    $ tox                    # run all linting and tests
 
 Getting your hands dirty
 ------------------------
@@ -88,8 +88,8 @@ Other things to note
 
 - Write tests.
 - Your tests don't have to be *behave* tests. ``:-)``
-- We're using PEP8 as our code style guide (``flake8`` will run over the code
-  on the CI server).
+- We use Ruff to govern our code style (``ruff check`` and ``ruff format``
+  will run over the code on the CI server).
 
 Thank you!
 
