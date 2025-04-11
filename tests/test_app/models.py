@@ -6,4 +6,4 @@ class BehaveTestModel(models.Model):
     number = models.IntegerField()
 
     def get_absolute_url(self):
-        return '/behave/test/%i/%s' % (self.number, self.name)
+        return f'/behave/test/{self.number}/{self.name}'

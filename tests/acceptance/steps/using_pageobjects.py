@@ -16,9 +16,9 @@ def pageobject_works(context):
     assert context.page.response.status_code == HTTPStatus.OK
     assert context.page.request == context.page.response.request
     assert isinstance(context.page.document, BeautifulSoup)
-    assert (
-        context.page.document.title.string == 'Test App: behave-django'
-    ), f'unexpected title: {context.page.document.title.string}'
+    assert context.page.document.title.string == 'Test App: behave-django', (
+        f'unexpected title: {context.page.document.title.string}'
+    )
 
 
 @then('get_link() returns the link subdocument')

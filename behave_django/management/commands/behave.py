@@ -176,8 +176,7 @@ class Command(BaseCommand):
         if options['use_existing_database'] and options['simple']:
             self.stderr.write(
                 self.style.WARNING(
-                    '--simple flag has no effect'
-                    ' together with --use-existing-database'
+                    '--simple flag has no effect together with --use-existing-database'
                 )
             )
 

@@ -88,6 +88,9 @@ exclude = ["tests/test_app/migrations/*.py"]
 extend-select = ["ALL"]
 extend-ignore = ["ANN", "COM812", "D", "FIX", "Q000", "RUF012", "TD"]
 
+[tool.ruff.lint.flake8-quotes]
+inline-quotes = "single"
+
 [tool.ruff.lint.per-file-ignores]
 "behave_django/decorators.py" = ["B010"]
 "behave_django/environment.py" = ["SLF001"]
