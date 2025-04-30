@@ -53,9 +53,10 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'behave-django'
-copyright = u'2020, Mitchel Cabuloy & Peter Bittner'
-author = u'Mitchel Cabuloy and contributors'
+project = 'behave-django'
+copyright = '2020, Mitchel Cabuloy & Peter Bittner'
+author = 'Mitchel Cabuloy and contributors'
+author = 'Mitchel Cabuloy and contributors'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -71,7 +72,7 @@ release = __version__
 #
 # This is also used if you do content translation via gettext catalogs.
 # Usually you set "language" from the command line for these cases.
-language = None
+language = 'en'
 
 # There are two options for replacing |today|: either, you set today to some
 # non-false value, then it is used:
@@ -235,8 +236,8 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  (master_doc, 'behave-django.tex', u'behave-django Documentation',
-   u'Mitchel Cabuloy', 'manual'),
+    (master_doc, 'behave-django.tex', 'behave-django Documentation',
+    'Mitchel Cabuloy', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -265,8 +266,8 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'behave-django', u'behave-django Documentation',
-     [author], 1)
+    (master_doc, 'behave-django', 'behave-django Documentation',
+    [author], 1)
 ]
 
 # If true, show URL addresses after external links.
@@ -279,9 +280,9 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  (master_doc, 'behave-django', u'behave-django Documentation',
-   author, 'behave-django', 'Behave BDD integration for Django.',
-   'Testing'),
+    (master_doc, 'behave-django', 'behave-django Documentation',
+    author, 'behave-django', 'Behave BDD integration for Django.',
+    'Testing'),
 ]
 
 # Documents to append as an appendix to all manuals.

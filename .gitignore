@@ -22,9 +22,12 @@ var/
 *.egg-info/
 .installed.cfg
 *.egg
+venv/
+.venv/
 
-# We only want Pipfile for easy development
-Pipfile.lock
+# No lockfiles, no version pinning (we develop a library)
+.python-version
+*.lock
 
 # Installer logs
 pip-log.txt
@@ -54,6 +57,7 @@ tests/*-report.xml
 # Sphinx documentation
 docs/_build/
 
-# added by GitSavvy
-/.python-version
+# IDE configs
+.idea/
 .ropeproject/
+.vscode/
