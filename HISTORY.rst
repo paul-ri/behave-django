@@ -1,12 +1,13 @@
 Release History
 ---------------
 
-1.6.0 (unreleased)
+1.6.0 (2025-06-14)
 ++++++++++++++++++
 
 **Features and Improvements**
 
-- Cover Python 3.13 and Django 5.2, drop Python 3.8 (pyproject license field change requires setuptools 77)
+- Cover Python 3.13 and Django 5.2, drop Python 3.8 (pyproject license field
+  change requires setuptools 77)
 
 **Bugfixes**
 
