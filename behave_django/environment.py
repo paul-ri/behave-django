@@ -109,10 +109,10 @@ class BehaveHooksMixin:
         This method runs the code necessary to create the test database, start
         the live server, etc.
         """
-        if django.VERSION >= (5, 2):
-            context.test.__class__._pre_setup(run=True)
-        else:
-            context.test._pre_setup(run=True)
+        #if django.VERSION >= (5, 2):
+        #    context.test.__class__._pre_setup(run=True)
+        #else:
+        #    context.test._pre_setup(run=True)
         #context.test.setUpClass()
         context.test()
 
