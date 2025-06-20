@@ -109,19 +109,21 @@ class BehaveHooksMixin:
         This method runs the code necessary to create the test database, start
         the live server, etc.
         """
-        if django.VERSION >= (5, 2):
-            context.test.__class__._pre_setup(run=True)
-        else:
-            context.test._pre_setup(run=True)
-        context.test.setUpClass()
+        #if django.VERSION >= (5, 2):
+        #    context.test.__class__._pre_setup(run=True)
+        #else:
+        #    context.test._pre_setup(run=True)
+        #context.test.setUpClass()
         context.test()
 
     def teardown_test(self, context):
         """
         Tears down the Django test
         """
-        context.test.tearDownClass()
-        context.test._post_teardown(run=True)
+        #context.test.tearDownClass()
+        #context.test._post_teardown(run=True)
+        #if context.test.doClassCleanups:
+        #    context.test.doClassCleanups()
         del context.test
 
 
