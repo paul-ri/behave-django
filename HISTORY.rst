@@ -4,6 +4,11 @@ Release History
 1.7.0 (unreleased)
 ++++++++++++++++++
 
+**Bugfixes**
+
+- Hardwire Behave 1.2.7.dev6 to avoid database transaction bug
+- Handle new run_hook() signature in Behave 1.2.7.dev7 (see runner.py
+  in https://github.com/behave/behave/commit/f4d5028 for the change)
 
 1.6.0 (2025-06-14)
 ++++++++++++++++++
