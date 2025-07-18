@@ -1,8 +1,26 @@
 Getting Started
 ===============
 
-Create the features directory in your project’s root directory. (Next
-to ``manage.py``)
+If you're new to *Behave* you should start with the `Behave Tutorial`_ and
+its follow-up chapters on the theory and practice of behavior-driven
+development (BDD).
+
+Setting up Behave for a Django project is no different than using Behave
+for any other Python project, except that you add *behave-django* to the
+``INSTALLED_APPS`` in the settings of your Django project and that you run
+Behave via the ``behave`` management command.
+
+Create a folder structure
+-------------------------
+
+The `Feature Testing Setup`_ chapter of Behave's documentation describes
+the various files and directories to prepare for your BDD test setup.
+
+The Behave documentation suggest to start by adding a ``features`` folder
+to your project root directory, which contains your feature files, the
+test environment control module, and a ``steps`` subdirectory for the
+code that implements the *given*, *when*, *then* steps of your features
+in Python.
 
 ::
 
@@ -12,7 +30,40 @@ to ``manage.py``)
         environment.py
         your-feature.feature
 
-Run ``python manage.py behave``::
+Alternatively, you can put both the ``features`` and the ``steps`` folder
+in a ``tests`` folder of your project root directory.  This is recommended
+if you want to follow common practices of Python projects.
+
+::
+
+    tests/
+        features/
+            example.feature
+        steps/
+            given.py
+            then.py
+            when.py
+        environment.py
+
+Your Behave configuration in ``pyproject.toml`` should then look somewhat
+like this:
+
+.. code-block:: toml
+
+    [tool.behave]
+    junit = true
+    junit_directory = "tests"
+    paths = ["tests"]
+
+.. tip::
+
+    You can create a Django starter project with this layout using the
+    `Painless CI/CD Copier template for Django`_.
+
+Execute your tests
+------------------
+
+Run ``python manage.py behave`` to execute your feature tests::
 
     $ python manage.py behave
     Creating test database for alias 'default'...
@@ -32,47 +83,20 @@ Run ``python manage.py behave``::
     Destroying test database for alias 'default'...
 
 See the `environment.py`_, `running-tests.feature`_ and `steps/running_tests.py`_
-files in the ``features`` folder of the project repository for implementation
-details of this very example.  See the folder also for `more useful examples`_.
-
-Alternative folder structure
-----------------------------
-
-For larger projects, specifically those that also have other types of tests,
-it's recommended to use a more sophisticated folder structure, e.g.
-
-::
-
-    tests/
-        acceptance/
-            features/
-                example.feature
-            steps/
-                given.py
-                then.py
-                when.py
-            environment.py
-
-Your *behave* configuration should then look something like this:
-
-.. code-block:: ini
-
-    [behave]
-    paths = tests/acceptance
-    junit_directory = tests/reports
-    junit = yes
-
-This way you'll be able to cleanly accommodate unit tests, integration
-tests, field tests, penetration tests, etc. and test reports in a single
-tests folder.
+files in the ``tests/acceptance`` folder of the *behave-django* project
+repository for implementation details of the above example.  See that
+folder also for `more useful examples`_.
 
 .. note::
 
-   The `behave docs`_ provide additional helpful information on using *behave*
+   The `behave docs`_ provide additional helpful information on using Behave
    with Django and various test automation libraries.
 
+.. _Behave Tutorial: https://behave.readthedocs.io/en/latest/tutorial/
+.. _Feature Testing Setup: https://behave.readthedocs.io/en/latest/gherkin/
+.. _Painless CI/CD Copier template for Django: https://gitlab.com/painless-software/cicd/app/django
 .. _environment.py: https://github.com/behave/behave-django/blob/main/tests/acceptance/environment.py
 .. _running-tests.feature: https://github.com/behave/behave-django/blob/main/tests/acceptance/features/running-tests.feature
 .. _more useful examples: https://github.com/behave/behave-django/tree/main/tests/acceptance/features
 .. _steps/running_tests.py: https://github.com/behave/behave-django/blob/main/tests/acceptance/steps/running_tests.py
-.. _behave docs: https://behave.readthedocs.io/en/latest/practical_tips.html
+.. _behave docs: https://behave.readthedocs.io/en/latest/practical_tips/

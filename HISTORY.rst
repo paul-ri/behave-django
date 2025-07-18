@@ -4,6 +4,12 @@ Release History
 1.7.0 (unreleased)
 ++++++++++++++++++
 
+**Features and Improvements**
+
+- Overhaul "Getting Started" chapter in documentation
+- Overhaul "Contributing" chapter in documentation
+- Update external links in the documentation
+
 **Bugfixes**
 
 - Hardwire Behave 1.2.7.dev6 to avoid database transaction bug

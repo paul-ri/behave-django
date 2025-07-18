@@ -101,5 +101,5 @@ You can read more about it in the `Multiple database docs`_.
 
 
 .. _using the ORM: https://docs.djangoproject.com/en/stable/topics/testing/tools/#fixture-loading
-.. _Django fixtures: https://docs.djangoproject.com/en/stable/howto/initial-data/#providing-data-with-fixtures
+.. _Django fixtures: https://docs.djangoproject.com/en/stable/howto/initial-data/#provide-data-with-fixtures
 .. _Multiple database docs: https://docs.djangoproject.com/en/stable/topics/testing/tools/#multi-database-support

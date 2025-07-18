@@ -64,13 +64,15 @@ directory and behave will pick it up.  You can read more about it in the
 |behave docs (config files)|_.
 
 For example, if you want to have your features directory somewhere else.
-In your ``.behaverc`` file, you can put
+In your ``pyproject.toml`` file, you can put
 
-.. code-block:: ini
+.. code-block:: toml
 
-    [behave]
-    paths=my_project/apps/accounts/features/
-          my_project/apps/polls/features/
+    [tool.behave]
+    paths = [
+        "my_project/apps/accounts/features/",
+        "my_project/apps/polls/features/",
+    ]
 
 *Behave* should now look for your features in those folders.
 
@@ -78,11 +80,11 @@ In your ``.behaverc`` file, you can put
 .. |keepdb docs| replace:: More information about ``--keepdb``
 .. _keepdb docs: https://docs.djangoproject.com/en/stable/topics/testing/overview/#the-test-database
 .. _Django test runner: https://docs.djangoproject.com/en/stable/ref/settings/#test-runner
-.. _Django's default test runner: https://github.com/django/django/blob/stable/4.0.x/django/test/runner.py#L555-L582
+.. _Django's default test runner: https://github.com/django/django/blob/stable/5.2.x/django/test/runner.py#L663
 .. |BehaviorDrivenTestRunner| replace:: ``behave_django.runner:BehaviorDrivenTestRunner``
-.. _BehaviorDrivenTestRunner: https://github.com/behave/behave-django/blob/1.4.0/behave_django/runner.py#L9-L13
-.. _test runner inside behave: https://github.com/behave/behave/blob/v1.2.7.dev2/behave/runner.py#L728-L736
+.. _BehaviorDrivenTestRunner: https://github.com/behave/behave-django/blob/1.6.0/behave_django/runner.py#L11-L14
+.. _test runner inside behave: https://github.com/behave/behave/blob/v1.2.7.dev8/behave/runner.py#L996-L1003
 .. |behave docs (runner opt)| replace:: behave docs
-.. _behave docs (runner opt): https://behave.readthedocs.io/en/latest/behave.html#cmdoption-r
+.. _behave docs (runner opt): https://behave.readthedocs.io/en/latest/behave#cmdoption-r
 .. |behave docs (config files)| replace:: behave docs
-.. _behave docs (config files): https://behave.readthedocs.io/en/latest/behave.html#configuration-files
+.. _behave docs (config files): https://behave.readthedocs.io/en/latest/behave#configuration-files
