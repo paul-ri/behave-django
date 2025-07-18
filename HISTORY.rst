@@ -1,7 +1,7 @@
 Release History
 ---------------
 
-1.7.0 (unreleased)
+1.7.0 (2025-07-18)
 ++++++++++++++++++
 
 **Features and Improvements**
