@@ -65,8 +65,7 @@ class BehaveHooksMixin:
     testcase_class = None
 
     def patch_context(self, context):
-        """
-        Patches the context to add utility functions
+        """Patch the context to add utility functions.
 
         Sets up the base_url, and the get_url() utility function.
         """
@@ -76,15 +75,12 @@ class BehaveHooksMixin:
         object.__setattr__(context, '__class__', PatchedContext)
 
     def setup_testclass(self, context):
-        """
-        Adds the test instance to context
-        """
+        """Add the test instance to context."""
         context.test = self.testcase_class()
 
     def setup_fixtures(self, context):
-        """
-        Sets up fixtures
-        """
+        """Set up fixtures."""
+
         if getattr(context, 'fixtures', None):
             if django.VERSION >= (5, 2):
                 context.test.__class__.fixtures = copy(context.fixtures)
@@ -104,8 +100,7 @@ class BehaveHooksMixin:
             load_registered_fixtures(context)
 
     def setup_test(self, context):
-        """
-        Sets up the Django test
+        """Set up the Django test.
 
         This method runs the code necessary to create the test database, start
         the live server, etc.
@@ -118,9 +113,7 @@ class BehaveHooksMixin:
         context.test()
 
     def teardown_test(self, context):
-        """
-        Tears down the Django test
-        """
+        """Tear down the Django test."""
         context.test.tearDownClass()
         context.test._post_teardown(run=True)
         del context.test
@@ -128,7 +121,7 @@ class BehaveHooksMixin:
 
 def monkey_patch_behave(django_test_runner):
     """
-    Integrate behave_django in behave via before/after scenario hooks
+    Integrate behave_django in behave via before/after scenario hooks.
     """
     behave_run_hook = ModelRunner.run_hook
 
